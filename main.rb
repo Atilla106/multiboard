@@ -1,9 +1,11 @@
 require 'sinatra'
 
+require './lib/train'
 require './lib/weather'
 
 get '/' do
-  @weather = Weather.new
   @time = Time.now
+  @trains = Train.from_sncf[0..11]
+  @weather = Weather.new
   haml :index
 end

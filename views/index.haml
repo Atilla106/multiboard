@@ -72,12 +72,52 @@
         height: 95vh;
       }
 
-      #rer {
+      #trains {
         position: absolute;
         top: 5vh;
         left: 25%;
         width: 25%;
         height: 95vh;
+      }
+
+      .train {
+        width: 100%;
+        height: 7.915vh;
+        color: white;
+        font-size: 3vh;
+        font-family: Tauri, sans-serif;
+      }
+
+      .train:nth-child(odd) {
+        background-color: rgb(12, 93, 165);
+      }
+
+      .train:nth-child(even) {
+        background-color: rgb(4, 58, 107);
+      }
+
+      .train-time {
+        margin-top: 2.3vh;
+        margin-left: 2vh;
+        font-size: 3vh;
+        display: inline-block;
+      }
+
+      .train-terminus {
+        margin-left: 1vh;
+        display: inline-block;
+      }
+
+      .train-type {
+        float: right;
+        margin-top: 2vh;
+        margin-right: 4vh;
+        height: 4vh;
+        display: inline-block;
+      }
+
+      .train-type > img {
+        height: 4vh;
       }
 
       #meteo {
@@ -205,7 +245,18 @@
 
     #map
 
-    #rer
+    #trains
+      - @trains.each do |train|
+        .train
+          .train-time
+            = train.time.strftime("%H:%M")
+          .train-terminus
+            = train.terminus
+          .train-type
+            - if train.type == "A"
+              %img{ :src => "http://i.imgur.com/YvzOdHZ.png" }
+            - elsif train.type == "L"
+              %img{ :src => "http://i.imgur.com/pMt0cSg.png" }
 
     #meteo
       %div
