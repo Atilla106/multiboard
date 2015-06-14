@@ -20,21 +20,56 @@
         background-color: rgb(33, 150, 243);
       }
 
-      #map-header {
-        position: absolute;
-        top: 3vh;
-        bottom: 0px;
-        width: 25%;
-        height: 5vh;
+      header > img {
+        margin-top: 1vh;
+        margin-left: 1vh;
+        height: 3vh;
+      }
+
+      #time {
+        float: right;
+        margin-top: 1vh;
+        margin-right: 1vh;
+        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 3vh;
+      }
+
+      #time-hour {
+        color: rgb(244, 172, 47);
+      }
+
+      #time-minute {
+        color: rgb(98, 108, 115);
+      }
+
+      h1 {
+        color: rgb(41, 47, 51);
+        cursor: auto;
+        display: inline;
+        font-family: 'Helvetica Neue', Roboto, 'Segoe UI', Calibri, sans-serif;
+        font-size: 3vh;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: bold;
+        height: auto;
+        line-height: 3vh;
+        list-style-image: none;
+        list-style-position: outside;
+        list-style-type: none;
+        outline-color: rgb(41, 47, 51);
+        outline-style: none;
+        outline-width: 0px;
+        text-decoration: none;
+        text-transform: none;
       }
 
       #map {
         position: absolute;
-        top: 10vh;
+        top: 5vh;
         bottom: 0px;
         left: 0px;
         width: 25%;
-        height: 90vh;
+        height: 95vh;
       }
 
       #rer {
@@ -42,31 +77,16 @@
         top: 5vh;
         left: 25%;
         width: 25%;
-      }
-
-      #rer-footer {
-        position: absolute;
-        top: 93vh;
-        left: 25%;
-        bottom: 0px;
-        width: 25%;
-        height: 5vh;
-      }
-
-      #meteo-header {
-        position: absolute;
-        top: 3vh;
-        left: 50%;
-        bottom: 0px;
-        width: 25%;
-        height: 5vh;
+        height: 95vh;
       }
 
       #meteo {
         position: absolute;
-        top: 10vh;
+        top: 5vh;
         left: 50%;
         width: 25%;
+        height: 95vh;
+        background-color: rgba(230, 230, 230, 0.7);
       }
 
       #meteo-icon {
@@ -101,21 +121,91 @@
         font-size: 2vh;
       }
 
-    %header
-      coucou
+      #meteo-block {
+        position: relative;
+        width: 100%;
+      }
 
-    #map-header
-      %h1 Carte
+      #meteo-windspeed {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 50%;
+      }
+
+      #meteo-windicon {
+        margin-top: 5vh;
+        width: 50%;
+        margin-left: 25%;
+      }
+
+      #meteo-windtext {
+        margin-top: -2vh;
+        margin-left: 25%;
+        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: rgb(33, 150, 243);
+        font-size: 3vh;
+      }
+
+      #meteo-sun {
+        position: absolute;
+        top: 10vh;
+        left: 50%;
+        width: 50%;
+      }
+
+      .meteo-suntext {
+        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: rgb(33, 150, 243);
+        font-size: 2vh;
+        text-align: center;
+      }
+
+      #meteo-table {
+        position: absolute;
+        top: 65vh;
+        left: 15%;
+        width: 70%;
+      }
+
+      #meteo-table > table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      tr {
+        border-bottom: 1px solid #ccc;
+      }
+
+      td {
+        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: rgb(33, 150, 243);
+        font-size: 2vh;
+      }
+
+      #twitter {
+        position: absolute;
+        top: 5vh;
+        left: 75%;
+        width: 25%;
+      }
+
+    %header
+      %img{ :src => "http://atilla.org/assets/img/logo.png" }
+      %span#time
+        %span#time-hour
+          #{@time.strftime("%H")}
+        \:
+        %span#time-minute
+          = @time.strftime("%M")
 
     #map
 
     #rer
-
-    #rer-footer
-      %h1 RER depuis Cergy Préfecture
-
-    #meteo-header
-      %h1 Météo
 
     #meteo
       %div
@@ -127,9 +217,44 @@
         %span#meteo-max
           max. #{@weather.max_temperature}°
 
+      #meteo-block
+        #meteo-windspeed
+          %img{ :id => "meteo-windicon", :src => "http://i.imgur.com/nY31gOA.png" }
+          #meteo-windtext
+            #{@weather.wind_speed} m/s
+
+        #meteo-sun
+          .meteo-suntext
+            Lever : #{@weather.sunrise.strftime("%Hh%M")}
+          %br
+          .meteo-suntext
+            Coucher : #{@weather.sunset.strftime("%Hh%M")}
+
+      #meteo-table
+        %table
+          %tr
+            %td.bold Jour
+            %td.bold +1
+            %td.bold +2
+            %td.bold +3
+          %tr
+            %td Matin
+            - @weather.morning_forecast.each do |temp|
+              %td #{temp}°
+          %tr
+            %td Après-midi
+            - @weather.afternoon_forecast.each do |temp|
+              %td #{temp}°
+
+    #twitter
+      %a{ :class => "twitter-timeline", :href => "https://twitter.com/MyEISTI", :data => { :widget_id => "610095605709471744"} }Tweets @MyEISTI
+
+      %script
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
     :javascript
       L.mapbox.accessToken = 'pk.eyJ1IjoiZmxhdnIiLCJhIjoiZWFkYmQ2YTEzZDRhNDg1MmM2ZDYwZjBiNzkxMzRlODIifQ.hVVth3HEgVYI4wyaWw9BQg';
-      var map = L.mapbox.map('map', 'mapbox.streets', { zoomControl: false }).setView([49.035048, 2.070478], 15);
+      var map = L.mapbox.map('map', 'mapbox.streets', { zoomControl: false }).setView([49.0351207, 2.0740691], 15);
 
       L.marker([49.035048, 2.070], {
           icon: L.mapbox.marker.icon({
@@ -155,10 +280,18 @@
           })
       }).addTo(map);
 
-      L.marker([49.0312, 2.0613], {
+      L.marker([49.03351, 2.073014], {
           icon: L.mapbox.marker.icon({
               'marker-size': 'large',
               'marker-symbol': 'restaurant',
-              'marker-color': '#00AAFF'
+              'marker-color': '#FFC020'
+          })
+      }).addTo(map);
+
+      L.marker([49.0362825, 2.0761285], {
+          icon: L.mapbox.marker.icon({
+              'marker-size': 'large',
+              'marker-symbol': 'library',
+              'marker-color': '#008010'
           })
       }).addTo(map);

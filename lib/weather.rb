@@ -3,7 +3,7 @@ require 'net/http'
 require 'time'
 
 class Weather
-  attr_reader :weather, :weather_icon, :temperature, :min_temperature, :max_temperature, :wind_speed, :sunrise, :sunset
+  attr_reader :weather, :weather_icon, :temperature, :min_temperature, :max_temperature, :wind_speed, :sunrise, :sunset, :morning_forecast, :afternoon_forecast
 
   def initialize
     owp_current
@@ -28,10 +28,18 @@ class Weather
   end
 
   def owp_forecast
-    data = query("forecast/daily", q: "Cergy", cnt: 1)
+    data = query("forecast/daily", q: "Cergy", cnt: 4)
 
     @min_temperature = (data["list"][0]["temp"]["min"] - 273.15).to_i
     @max_temperature = (data["list"][0]["temp"]["max"] - 273.15).to_i
+
+    @morning_forecast = []
+    @afternoon_forecast = []
+
+    data["list"][1..3].each do |day|
+      @morning_forecast << (day["temp"]["min"] - 273.15).to_i
+      @afternoon_forecast << (day["temp"]["max"] - 273.15).to_i
+    end
   end
 
   def icon(weather)
