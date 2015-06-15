@@ -10,13 +10,13 @@
     %link{ :href => "https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css", :rel => "stylesheet" }
 
     %header
-      %img{ :src => "http://atilla.org/assets/img/logo.png" }
-      %span#time
-        %span#time-hour
-          #{@time.strftime("%H")}
+      .header-item#time
+        %span#time-hour #{@time.strftime("%H")}
         %span{ :style => "color: black" } :
-        %span#time-minute
-          = @time.strftime("%M")
+        %span#time-minute #{@time.strftime("%M")}
+      .header-item#header-logo
+        %img{ :src => "http://atilla.org/assets/img/logo.png" }
+      
 
     #map.column.full
 
