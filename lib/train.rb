@@ -5,10 +5,10 @@ require 'time'
 require './lib/stations'
 
 class Train
-  attr_reader :station, :type, :time, :number, :mission, :terminus
+  attr_reader :station, :type, :time, :number, :mission, :terminus, :state
 
-  def initialize(station, type, time, number, mission, terminus)
-    @station, @type, @time, @number, @mission, @terminus = [station, type, time, number, mission, terminus]
+  def initialize(station, type, time, number, mission, terminus, state)
+    @station, @type, @time, @number, @mission, @terminus, @state = [station, type, time, number, mission, terminus, state]
   end
 
   def to_s
@@ -19,13 +19,14 @@ class Train
     root = Train.query_sncf(87381905)
 
     root.xpath("//train").map do |train|
-      time = Time.strptime(train.children[0].text, "%d/%m/%Y %H:%M")
-      number = train.children[2].text
-      mission = train.children[4].text
-      terminus = STATIONS[train.children[6].text.to_i] || "???"
+      time = Time.strptime(train.search("date").first.text, "%d/%m/%Y %H:%M")
+      number = train.search("num").first.text
+      mission = train.search("miss").first.text
+      terminus = STATIONS[train.search("term").first.text.to_i] || "???"
       type = number.match(/^[0-9]+$/).nil? ? "A" : "L"
+      state = train.search("etat").first.text rescue nil
 
-      Train.new(STATIONS[87381905], type, time, number, mission, terminus)
+      Train.new(STATIONS[87381905], type, time, number, mission, terminus, state)
     end.sort_by(&:time)
   end
 
