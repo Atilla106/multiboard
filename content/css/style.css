@@ -66,10 +66,13 @@ header {
     height: 95vh;
 }
 
+/* Map pane */
 
 #map {
     left: 0px;
 }
+
+/* Trains pane */
 
 #trains {
     left: 25%;
@@ -114,15 +117,19 @@ header {
     height: 4vh;
 }
 
+/* Weather pane */
+
 #meteo {
     left: 50%;
     background-color: rgba(230, 230, 230, 0.7);
 }
 
 #meteo-icon {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 25%;
+    margin-top: 1vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
 }
 
 #meteo-temperature {
@@ -190,14 +197,21 @@ header {
     border-collapse: collapse;
 }
 
+/* Twitter feed pane */
+
+#twitter {
+    left: 75%;
+}
+
+/* Typography classes */
+
 .bold {
     font-weight: bold;
 }
+
+/* Generic purpose classes */
 
 tr {
     border-bottom: 1px solid #ccc;
 }
 
-#twitter {
-    left: 75%;
-}

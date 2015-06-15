@@ -36,7 +36,7 @@
               %img{ :src => "http://i.imgur.com/pMt0cSg.png" }
 
     #meteo.column.full
-      %img{ :id => "meteo-icon", :src => @weather.weather_icon }
+      #meteo-icon{ :style => "background-image: url('#{@weather.weather_icon}')"}
       #meteo-temperature #{@weather.temperature}°
       #meteo-minmax
         %span#meteo-min
