@@ -12,6 +12,9 @@
         padding: 0px;
         margin: 0px;
         height: 100vh;
+        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: rgb(33, 150, 243);
+        font-size: 2vh;
       }
 
       header {
@@ -26,11 +29,20 @@
         height: 3vh;
       }
 
+      .column {
+        position: absolute;
+        top: 5vh;
+        width: 25%;
+      }
+
+      .full {
+        height: 95vh;
+      }
+
       #time {
         float: right;
         margin-top: 1vh;
         margin-right: 1vh;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
         font-size: 3vh;
       }
 
@@ -42,48 +54,17 @@
         color: rgb(98, 108, 115);
       }
 
-      h1 {
-        color: rgb(41, 47, 51);
-        cursor: auto;
-        display: inline;
-        font-family: 'Helvetica Neue', Roboto, 'Segoe UI', Calibri, sans-serif;
-        font-size: 3vh;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: bold;
-        height: auto;
-        line-height: 3vh;
-        list-style-image: none;
-        list-style-position: outside;
-        list-style-type: none;
-        outline-color: rgb(41, 47, 51);
-        outline-style: none;
-        outline-width: 0px;
-        text-decoration: none;
-        text-transform: none;
-      }
-
       #map {
-        position: absolute;
-        top: 5vh;
-        bottom: 0px;
         left: 0px;
-        width: 25%;
-        height: 95vh;
       }
 
       #trains {
-        position: absolute;
-        top: 5vh;
         left: 25%;
-        width: 25%;
-        height: 95vh;
       }
 
       .train {
         width: 100%;
         height: 7.915vh;
-        color: rgb(33, 150, 243);
         font-size: 2.5vh;
         font-family: Tauri, sans-serif;
       }
@@ -121,11 +102,7 @@
       }
 
       #meteo {
-        position: absolute;
-        top: 5vh;
         left: 50%;
-        width: 25%;
-        height: 95vh;
         background-color: rgba(230, 230, 230, 0.7);
       }
 
@@ -137,8 +114,6 @@
 
       #meteo-temperature {
         text-align: center;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
         font-size: 8vh;
       }
 
@@ -149,16 +124,10 @@
 
       #meteo-min {
         float: left;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
       }
 
       #meteo-max {
         float: right;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
       }
 
       #meteo-block {
@@ -182,8 +151,6 @@
       #meteo-windtext {
         margin-top: -2vh;
         margin-left: 25%;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
         font-size: 3vh;
       }
 
@@ -195,9 +162,6 @@
       }
 
       .meteo-suntext {
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
         text-align: center;
       }
 
@@ -221,17 +185,8 @@
         border-bottom: 1px solid #ccc;
       }
 
-      td {
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
-      }
-
       #twitter {
-        position: absolute;
-        top: 5vh;
         left: 75%;
-        width: 25%;
       }
 
     %header
@@ -239,13 +194,13 @@
       %span#time
         %span#time-hour
           #{@time.strftime("%H")}
-        \:
+        %span{ :style => "color: black" } :
         %span#time-minute
           = @time.strftime("%M")
 
-    #map
+    #map.column.full
 
-    #trains
+    #trains.column.full
       - @trains.each do |train|
         .train
           .train-time
@@ -261,9 +216,8 @@
             - elsif train.type == "L"
               %img{ :src => "http://i.imgur.com/pMt0cSg.png" }
 
-    #meteo
-      %div
-        %img{ :id => "meteo-icon", :src => @weather.weather_icon }
+    #meteo.column.full
+      %img{ :id => "meteo-icon", :src => @weather.weather_icon }
       #meteo-temperature #{@weather.temperature}°
       #meteo-minmax
         %span#meteo-min
@@ -300,7 +254,7 @@
             - @weather.afternoon_forecast.each do |temp|
               %td #{temp}°
 
-    #twitter
+    #twitter.column
       %a{ :class => "twitter-timeline", :href => "https://twitter.com/MyEISTI", :data => { :widget_id => "610095605709471744"} }Tweets @MyEISTI
 
       %script
