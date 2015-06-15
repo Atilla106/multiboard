@@ -32,12 +32,24 @@ header {
 
 #time {
     float: right;
+    display: inline-block;
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+#time span {
+    line-height: 100%;
+    display: table-cell;
+    vertical-align: middle;
 }
 
 #time-hour {
     color: rgb(244, 172, 47);
 }
 
+#time-sep {
+    color: rgb(0, 0, 0);
+}
 #time-minute {
     color: rgb(98, 108, 115);
 }

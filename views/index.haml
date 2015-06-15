@@ -12,7 +12,7 @@
     %header
       .header-item#time
         %span#time-hour #{@time.strftime("%H")}
-        %span{ :style => "color: black" } :
+        %span#time-sep :
         %span#time-minute #{@time.strftime("%M")}
       .header-item#header-logo
         %img{ :src => "http://atilla.org/assets/img/logo.png" }
