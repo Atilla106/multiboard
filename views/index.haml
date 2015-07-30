@@ -34,12 +34,12 @@
             = train.terminus[0..22]
           .train-type
             - if train.type == "A"
-              %img{ :src => "http://i.imgur.com/YvzOdHZ.png" }
+              %img{ :src => "img/a.png" }
             - elsif train.type == "L"
-              %img{ :src => "http://i.imgur.com/pMt0cSg.png" }
+              %img{ :src => "img/l.png" }
 
     #meteo.column.full
-      %img{ :id => "meteo-icon", :src => @weather.weather_icon }
+      %img{ :id => "meteo-icon", :src => "img/#{@weather.weather_icon}" }
       #meteo-temperature #{@weather.temperature}°
       #meteo-minmax
         %span#meteo-min
@@ -49,7 +49,7 @@
 
       #meteo-block
         #meteo-windspeed
-          %img{ :id => "meteo-windicon", :src => "http://i.imgur.com/nY31gOA.png" }
+          %img{ :id => "meteo-windicon", :src => "img/wind-icon.png" }
           #meteo-windtext
             #{@weather.wind_speed} m/s
 

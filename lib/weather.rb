@@ -44,17 +44,17 @@ class Weather
 
   def icon(weather)
     urls = {
-      "Clear Sky" => "http://i.imgur.com/aj7jR1p.png",
-      "Clouds" => "http://i.imgur.com/WJAoRDq.png",
-      "Thunderstorm" => "http://i.imgur.com/AddOin5.png",
-      "Drizzle" => "http://i.imgur.com/HygDF63.png",
-      "Rain" => "http://i.imgur.com/sVlvqse.png",
-      "Snow" => "http://i.imgur.com/mK6rhTg.png",
+      "Clear Sky" => "clear-sky.png",
+      "Clouds" => "clouds.png",
+      "Thunderstorm" => "thunderstorm.png",
+      "Drizzle" => "drizzle.png",
+      "Rain" => "rain.png",
+      "Snow" => "snow.png",
     }
 
     weather["main"] = "Clear Sky" if weather["id"] == 800
 
-    urls[weather["main"]] || "http://i.imgur.com/P3ubIsf.png"
+    urls[weather["main"]] || "unknwown.png"
   end
 
   def query(url, options = {})
