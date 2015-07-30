@@ -201,3 +201,93 @@ tr {
 #twitter {
     left: 75%;
 }
+
+#tw-widget ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#tw-widget li {
+    width: 25vw;
+    height: 20vh;
+    position: relative;
+    box-shadow: 0px 0px 25px -4px rgba(0, 0, 0, 0.4);
+    margin: 0;
+}
+
+#tw-widget .user {
+    background: #2196F3;
+    padding: 1vh;
+    position: relative;
+    border-bottom: 1px solid #FD6160;
+}
+
+#tw-widget .user a span {
+    position: absolute;
+    display: block;
+    top: 0;
+    text-align: left;
+}
+
+#tw-widget .user a span[data-scribe="element:name"] {
+    position: absolute;
+    top: 21px;
+    left: 55px;
+    color: white;
+    font-size: 1.5vh;
+    font-weight: bold;
+    width: 10vw;
+}
+
+#tw-widget .user a span[data-scribe="element:screen_name"] {
+  position: absolute;
+  top: 42px;
+  left: 74px;
+  font-size: 1.3vh;
+  color: white;
+}
+
+#tw-widget .tweet {
+  margin: 0;
+  padding: 20px;
+  color: #4D4D4D;
+  font-size: 1.5vh;
+  font-weight: bold;
+}
+
+#tw-widget .tweet a {
+  color: #4D4D4D;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#tw-widget .tweet a[data-scribe="element:url"] {
+  color: #00AE8E;
+}
+
+#tw-widget .tweet a[data-scribe="element:hashtag"] {
+  color: #2196F3;
+}
+
+#tw-widget .timePosted {
+    font-size: 1vh;
+    margin-bottom: 0;
+    text-align: right;
+}
+
+#tw-widget .timePosted {
+  margin: 0 0 10px;
+  padding: 0 20px;
+  font-size: 12px;
+  text-align: right;
+}
+
+
+#tw-widget .timePosted:before {
+  font-family: "Fontawesome";
+  -webkit-font-smoothing: antialiased;
+  content: "";
+  padding-right: 4px;
+}
+

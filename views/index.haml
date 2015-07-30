@@ -2,7 +2,9 @@
 %html
   %head
     %title eistv dashboard
+    %link{ :href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet" }
     %link{ :href => "css/style.css", :rel => "stylesheet" }
+    %script{ :src => "javascript/twitter.js" }
 
   %body
 
@@ -16,7 +18,7 @@
         %span#time-minute #{@time.strftime("%M")}
       .header-item#header-logo
         %img{ :src => "http://atilla.org/assets/img/logo.png" }
-      
+
 
     #map.column.full
 
@@ -75,10 +77,18 @@
               %td #{temp}°
 
     #twitter.column
-      %a{ :class => "twitter-timeline", :href => "https://twitter.com/MyEISTI", :data => { :widget_id => "610095605709471744"} }Tweets @MyEISTI
+      #tw-widget
 
-      %script
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    :javascript
+      var twitterConfig = {
+        "id": '610095605709471744',
+        "domId": 'tw-widget',
+        "maxTweets": 3,
+        "enableLinks": true,
+        "showInteraction": false,
+        "lang": "fr"
+      };
+      twitterFetcher.fetch(twitterConfig);
 
     :javascript
       L.mapbox.accessToken = 'pk.eyJ1IjoiZmxhdnIiLCJhIjoiZWFkYmQ2YTEzZDRhNDg1MmM2ZDYwZjBiNzkxMzRlODIifQ.hVVth3HEgVYI4wyaWw9BQg';
