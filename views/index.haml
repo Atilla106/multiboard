@@ -2,265 +2,44 @@
 %html
   %head
     %title eistv dashboard
-
-  %script{ :src => "https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js" }
-  %link{ :href => "https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css", :rel => "stylesheet" }
+    %link{ :href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css", :rel => "stylesheet" }
+    %link{ :href => "css/style.css", :rel => "stylesheet" }
+    %script{ :src => "javascript/twitter.js" }
 
   %body
-    :css
-      body {
-        padding: 0px;
-        margin: 0px;
-        height: 100vh;
-      }
 
-      header {
-        width: 100%;
-        height: 5vh;
-        background-color: rgb(33, 150, 243);
-      }
-
-      header > img {
-        margin-top: 1vh;
-        margin-left: 1vh;
-        height: 3vh;
-      }
-
-      #time {
-        float: right;
-        margin-top: 1vh;
-        margin-right: 1vh;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        font-size: 3vh;
-      }
-
-      #time-hour {
-        color: rgb(244, 172, 47);
-      }
-
-      #time-minute {
-        color: rgb(98, 108, 115);
-      }
-
-      h1 {
-        color: rgb(41, 47, 51);
-        cursor: auto;
-        display: inline;
-        font-family: 'Helvetica Neue', Roboto, 'Segoe UI', Calibri, sans-serif;
-        font-size: 3vh;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: bold;
-        height: auto;
-        line-height: 3vh;
-        list-style-image: none;
-        list-style-position: outside;
-        list-style-type: none;
-        outline-color: rgb(41, 47, 51);
-        outline-style: none;
-        outline-width: 0px;
-        text-decoration: none;
-        text-transform: none;
-      }
-
-      #map {
-        position: absolute;
-        top: 5vh;
-        bottom: 0px;
-        left: 0px;
-        width: 25%;
-        height: 95vh;
-      }
-
-      #trains {
-        position: absolute;
-        top: 5vh;
-        left: 25%;
-        width: 25%;
-        height: 95vh;
-      }
-
-      .train {
-        width: 100%;
-        height: 7.915vh;
-        color: white;
-        font-size: 3vh;
-        font-family: Tauri, sans-serif;
-      }
-
-      .train:nth-child(odd) {
-        background-color: rgb(12, 93, 165);
-      }
-
-      .train:nth-child(even) {
-        background-color: rgb(4, 58, 107);
-      }
-
-      .train-time {
-        margin-top: 2.3vh;
-        margin-left: 2vh;
-        font-size: 3vh;
-        display: inline-block;
-      }
-
-      .train-terminus {
-        margin-left: 1vh;
-        display: inline-block;
-      }
-
-      .train-type {
-        float: right;
-        margin-top: 2vh;
-        margin-right: 4vh;
-        height: 4vh;
-        display: inline-block;
-      }
-
-      .train-type > img {
-        height: 4vh;
-      }
-
-      #meteo {
-        position: absolute;
-        top: 5vh;
-        left: 50%;
-        width: 25%;
-        height: 95vh;
-        background-color: rgba(230, 230, 230, 0.7);
-      }
-
-      #meteo-icon {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      #meteo-temperature {
-        text-align: center;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 8vh;
-      }
-
-      #meteo-minmax {
-        margin-left: 20%;
-        margin-right: 20%;
-      }
-
-      #meteo-min {
-        float: left;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
-      }
-
-      #meteo-max {
-        float: right;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
-      }
-
-      #meteo-block {
-        position: relative;
-        width: 100%;
-      }
-
-      #meteo-windspeed {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 50%;
-      }
-
-      #meteo-windicon {
-        margin-top: 5vh;
-        width: 50%;
-        margin-left: 25%;
-      }
-
-      #meteo-windtext {
-        margin-top: -2vh;
-        margin-left: 25%;
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 3vh;
-      }
-
-      #meteo-sun {
-        position: absolute;
-        top: 10vh;
-        left: 50%;
-        width: 50%;
-      }
-
-      .meteo-suntext {
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
-        text-align: center;
-      }
-
-      #meteo-table {
-        position: absolute;
-        top: 65vh;
-        left: 15%;
-        width: 70%;
-      }
-
-      #meteo-table > table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      .bold {
-        font-weight: bold;
-      }
-
-      tr {
-        border-bottom: 1px solid #ccc;
-      }
-
-      td {
-        font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-        color: rgb(33, 150, 243);
-        font-size: 2vh;
-      }
-
-      #twitter {
-        position: absolute;
-        top: 5vh;
-        left: 75%;
-        width: 25%;
-      }
+    %script{ :src => "https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.js" }
+    %link{ :href => "https://api.tiles.mapbox.com/mapbox.js/v2.1.9/mapbox.css", :rel => "stylesheet" }
 
     %header
-      %img{ :src => "http://atilla.org/assets/img/logo.png" }
-      %span#time
-        %span#time-hour
-          #{@time.strftime("%H")}
-        \:
-        %span#time-minute
-          = @time.strftime("%M")
+      .header-item#time
+        %span#time-hour #{@time.strftime("%H")}
+        %span#time-sep :
+        %span#time-minute #{@time.strftime("%M")}
+      .header-item#header-logo
+        %img{ :src => "http://atilla.org/assets/img/logo.png" }
 
-    #map
 
-    #trains
+    #map.column.full
+
+    #trains.column.full
       - @trains.each do |train|
         .train
           .train-time
-            = train.time.strftime("%H:%M")
+            - if train.state
+              = train.state
+            - else
+              = train.time.strftime("%H:%M")
           .train-terminus
-            = train.terminus
+            = train.terminus[0..22]
           .train-type
             - if train.type == "A"
-              %img{ :src => "http://i.imgur.com/YvzOdHZ.png" }
+              %img{ :src => "img/a.png" }
             - elsif train.type == "L"
-              %img{ :src => "http://i.imgur.com/pMt0cSg.png" }
+              %img{ :src => "img/l.png" }
 
-    #meteo
-      %div
-        %img{ :id => "meteo-icon", :src => @weather.weather_icon }
+    #meteo.column.full
+      %img{ :id => "meteo-icon", :src => "img/#{@weather.weather_icon}" }
       #meteo-temperature #{@weather.temperature}°
       #meteo-minmax
         %span#meteo-min
@@ -270,7 +49,7 @@
 
       #meteo-block
         #meteo-windspeed
-          %img{ :id => "meteo-windicon", :src => "http://i.imgur.com/nY31gOA.png" }
+          %img{ :id => "meteo-windicon", :src => "img/wind-icon.png" }
           #meteo-windtext
             #{@weather.wind_speed} m/s
 
@@ -297,11 +76,19 @@
             - @weather.afternoon_forecast.each do |temp|
               %td #{temp}°
 
-    #twitter
-      %a{ :class => "twitter-timeline", :href => "https://twitter.com/MyEISTI", :data => { :widget_id => "610095605709471744"} }Tweets @MyEISTI
+    #twitter.column
+      #tw-widget
 
-      %script
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    :javascript
+      var twitterConfig = {
+        "id": '610095605709471744',
+        "domId": 'tw-widget',
+        "maxTweets": 3,
+        "enableLinks": true,
+        "showInteraction": false,
+        "lang": "fr"
+      };
+      twitterFetcher.fetch(twitterConfig);
 
     :javascript
       L.mapbox.accessToken = 'pk.eyJ1IjoiZmxhdnIiLCJhIjoiZWFkYmQ2YTEzZDRhNDg1MmM2ZDYwZjBiNzkxMzRlODIifQ.hVVth3HEgVYI4wyaWw9BQg';
