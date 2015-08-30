@@ -38,3 +38,6 @@ DEPENDENCIES
   nokogiri
   rerun
   sinatra
+
+BUNDLED WITH
+   1.10.0.rc

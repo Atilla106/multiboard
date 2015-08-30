@@ -6,6 +6,8 @@ require './lib/weather'
 
 class Main < Sinatra::Base
   set :public_folder, File.dirname(__FILE__) + '/content'
+  #Disable X-Frame-option for EisTV
+  set :protection, :except => :frame_options
 
   get '/' do
     @time = Time.now
