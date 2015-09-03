@@ -11,7 +11,7 @@ class Main < Sinatra::Base
 
   get '/' do
     @time = Time.now
-    @trains = Train.from_sncf[0..11]
+    @trains = Train.from_sncf[0..9]
     @weather = Weather.new
     haml :index
   end
