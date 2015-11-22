@@ -58,7 +58,8 @@ class Weather
   end
 
   def query(url, options = {})
-    options.merge!({ :mode => "json" })
+    token = File.read("owm_token").chomp
+    options.merge!({ :mode => "json", :appid => token })
     uri = URI("http://api.openweathermap.org/data/2.5/#{url}")
     uri.query = URI.encode_www_form(options)
     JSON.parse(Net::HTTP.get(uri)) rescue {}
