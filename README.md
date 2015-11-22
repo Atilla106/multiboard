@@ -18,3 +18,19 @@ To launch the server, just run the following command
 
 By default, the server will run on port 4567.
 
+### Tokens
+
+The server depends on SNCF and OpenWeatherMap APIs, both
+require tokens, once you have your tokens, follow these
+steps:
+
+* Create a `sncf_token` file at the root of the project
+* Paste the login on the first line, the password on
+the second
+
+* Create a `owm_token` file at the root of the project
+* Paste the token on the first line
+
+
+You're ready to rock!
+
