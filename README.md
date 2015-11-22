@@ -14,7 +14,7 @@ To install all dependencies, just run the following command
 
 To launch the server, just run the following command
 
-    bundle exec ruby main.py
+    bundle exec ruby main.rb
 
 By default, the server will run on port 4567.
 
