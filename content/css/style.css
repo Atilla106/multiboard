@@ -5,7 +5,6 @@ body {
     margin: 0px;
     height: 100vh;
     font-family: Blender, Helvetica Neue, Helvetica, Arial, sans-serif;
-    color: rgb(33, 150, 243);
     font-size: 2vh;
 }
 
@@ -14,7 +13,9 @@ body {
 header {
     width: 100%;
     height: 10vh;
-    background-color: rgb(33, 150, 243);
+    background-color: white;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    position: relative;
 }
 
 .header-item {
@@ -49,6 +50,7 @@ header {
 
 #time-sep {
     color: rgb(0, 0, 0);
+    font-weight: 300;
 }
 #time-minute {
     color: rgb(98, 108, 115);
@@ -80,6 +82,11 @@ header {
     height: 9vh;
     font-size: 2.5vh;
     font-family: Tauri, sans-serif;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.train .train-time {
+    color: rgba(0, 0, 0, 0.95);
 }
 
 .train:nth-child(odd) {
@@ -216,7 +223,6 @@ tr {
     width: 25vw;
     height: 22.5vh;
     position: relative;
-    box-shadow: 0px 0px 25px -4px rgba(0, 0, 0, 0.4);
     margin: 0;
 }
 
@@ -224,7 +230,7 @@ tr {
     background: #2196F3;
     padding: 1vh;
     position: relative;
-    border-bottom: 1px solid #FD6160;
+    border-bottom: 3px solid #1D7CC7;
 }
 
 #tw-widget .user a span {
